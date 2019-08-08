@@ -1,0 +1,122 @@
+import Foundation
+
+public class HebrewYear {
+  public let year: Int
+  
+  private let calendar = Calendar(identifier: .hebrew)
+  
+  private lazy var roshHashanahDate: Date = {
+    guard let date = calendar.date(from: .init(year: year, month: 1, day: 1))
+      else { preconditionFailure() }
+    return date
+  }()
+  
+  private lazy var nextRoshHashanahDate: Date = {
+    guard let date = calendar.date(byAdding: .init(year: 1), to: roshHashanahDate)
+      else { preconditionFailure() }
+    return date
+  }()
+  
+  private lazy var roshHashanahWeekday: Int = {
+    calendar.component(.weekday, from: roshHashanahDate)
+  }()
+  
+  public private(set) lazy var isLeapYear = {
+    Constants.leapYearRemainders.contains(year % Constants.leapYearModulus)
+  }()
+  
+  public private(set) lazy var length: Length = {
+    guard let numberOfDays = calendar.dateComponents([.day], from: roshHashanahDate, to: nextRoshHashanahDate).day,
+      let length = self.length(for: numberOfDays)
+      else { preconditionFailure() }
+    return length
+  }()
+  
+  public private(set) lazy var type: YearType = {
+    guard let type = self.yearType(for: roshHashanahWeekday, length: length, isLeapYear: isLeapYear)
+      else { preconditionFailure() }
+    return type
+  }()
+  
+  public enum Length {
+    case deficient, regular, abundant
+  }
+  
+  public enum YearType: Int {
+    // Ordinary years
+    case בחג, בשה, גכה, הכז, השא, זחא, זשג
+    // Leap years
+    case בחה, בשז, גכז, החא, השג, זחג, זשה
+  }
+  
+  private enum Constants {
+    static let leapYearModulus = 19
+    static let leapYearRemainders = [0, 3, 6, 8, 11, 14, 17]
+  }
+  
+  public init(year: Int) {
+    self.year = year
+  }
+  
+  private func length(for numberOfDays: Int) -> Length? {
+    switch numberOfDays % 10 {
+    case 3: return .deficient
+    case 4: return .regular
+    case 5: return .abundant
+    default: return nil
+    }
+  }
+  
+  private func yearType(for roshHashanahWeekday: Int, length: Length, isLeapYear: Bool) -> YearType? {
+    if isLeapYear { return leapYearType(for: roshHashanahWeekday, length: length) }
+    else { return ordinaryYearType(for: roshHashanahWeekday, length: length) }
+  }
+  
+  private func ordinaryYearType(for roshHashanahWeekday: Int, length: Length) -> YearType? {
+    switch length {
+    case .deficient:
+      switch roshHashanahWeekday {
+      case 2: return .בחג
+      case 7: return .זחא
+      default: return nil
+      }
+    case .regular:
+      switch roshHashanahWeekday {
+      case 3: return .גכה
+      case 5: return .הכז
+      default: return nil
+      }
+    case .abundant:
+      switch roshHashanahWeekday {
+      case 2: return .בשה
+      case 5: return .השא
+      case 7: return .זשג
+      default: return nil
+      }
+    }
+  }
+  
+  private func leapYearType(for roshHashanahWeekday: Int, length: Length) -> YearType? {
+    switch length {
+    case .deficient:
+      switch roshHashanahWeekday {
+      case 2: return .בחה
+      case 5: return .החא
+      case 7: return .זחג
+      default: return nil
+      }
+    case .regular:
+      switch roshHashanahWeekday {
+      case 3: return .גכז
+      default: return nil
+      }
+    case .abundant:
+      switch roshHashanahWeekday {
+      case 2: return .בשז
+      case 5: return .השג
+      case 7: return .זשה
+      default: return nil
+      }
+    }
+  }
+}
