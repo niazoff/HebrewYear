@@ -38,17 +38,6 @@ public class HebrewYear {
     return type
   }()
   
-  public enum Length {
-    case deficient, regular, abundant
-  }
-  
-  public enum YearType: Int {
-    // Ordinary years
-    case בחג, בשה, גכה, הכז, השא, זחא, זשג
-    // Leap years
-    case בחה, בשז, גכז, החא, השג, זחג, זשה
-  }
-  
   private enum Constants {
     static let leapYearModulus = 19
     static let leapYearRemainders = [0, 3, 6, 8, 11, 14, 17]
