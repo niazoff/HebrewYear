@@ -9,8 +9,11 @@ let package = Package(
       name: "HebrewYear",
       targets: ["HebrewYear"]),
   ],
+  dependencies: [
+    .package(url: "https://github.com/niazoff/Torah.git", .branch("master"))
+  ],
   targets: [
-    .target(name: "HebrewYear"),
+    .target(name: "HebrewYear", dependencies: ["Torah"]),
     .testTarget(
       name: "HebrewYearTests",
       dependencies: ["HebrewYear"]),

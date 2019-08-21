@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Torah",
+        "repositoryURL": "https://github.com/niazoff/Torah.git",
+        "state": {
+          "branch": "master",
+          "revision": "ad945df3e01d7488982c209fae390100a6f2bc9b",
+          "version": null
+        }
+      },
+      {
+        "package": "VerseIndex",
+        "repositoryURL": "https://github.com/niazoff/VerseIndex.git",
+        "state": {
+          "branch": "master",
+          "revision": "a12dd2c95253f330c46c6004cefce2a3861691ec",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
