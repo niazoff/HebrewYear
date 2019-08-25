@@ -74,7 +74,7 @@ struct YearTypeReadings {
   }
   
   static func reading(for type: HebrewYear.YearType, month: Int, day: Int) -> Reading? {
-    readings(for: type)[month][day]
+    readings(for: type)[month - 1][day]
   }
   
   private static func readings(for type: HebrewYear.YearType) -> Readings {
