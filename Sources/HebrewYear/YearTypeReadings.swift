@@ -73,8 +73,8 @@ struct YearTypeReadings {
     ReadingFactory.makeReading(for: parshah)
   }
   
-  static func reading(for type: HebrewYear.YearType, month: Int, day: Int) -> Reading? {
-    readings(for: type)[month - 1][day]
+  static func reading(for type: HebrewYear.YearType, month: HebrewYear.Month, day: Int) -> Reading? {
+    readings(for: type)[month.rawValue - 1][day]
   }
   
   private static func readings(for type: HebrewYear.YearType) -> Readings {
@@ -85,6 +85,7 @@ struct YearTypeReadings {
       [3: toldot, 10: vayetze, 17: vayishlach, 24: vayeshev],
       [2: miketz, 9: vayigash, 16: vayechi, 23: shemot],
       [1: vaera, 8: bo, 15: beshalach, 22: yitro, 29: mishpatim],
+      [:],
       [6: terumah, 13: tetzaveh, 20: kiTisa, 27: vayakhelPekudei],
       [5: vayikra, 12: tzav, 26: shemini],
       [3: tazriaMetzora, 10: achareiMotKedoshim, 17: emor, 24: beharBechukotai],
@@ -99,6 +100,7 @@ struct YearTypeReadings {
       [2: toldot, 9: vayetze, 16: vayishlach, 23: vayeshev, 30: miketz],
       [7: vayigash, 14: vayechi, 21: shemot, 28: vaera],
       [6: bo, 13: beshalach, 20: yitro, 27: mishpatim],
+      [:],
       [4: terumah, 11: tetzaveh, 18: kiTisa, 25: vayakhelPekudei],
       [3: vayikra, 10: tzav, 24: shemini],
       [1: tazriaMetzora, 8: achareiMotKedoshim, 15: emor,
@@ -114,6 +116,7 @@ struct YearTypeReadings {
       [2: toldot, 9: vayetze, 16: vayishlach, 23: vayeshev, 30: miketz],
       [7: vayigash, 14: vayechi, 21: shemot, 28: vaera],
       [6: bo, 13: beshalach, 20: yitro, 27: mishpatim],
+      [:],
       [4: terumah, 11: tetzaveh, 18: kiTisa, 25: vayakhelPekudei],
       [3: vayikra, 10: tzav, 24: shemini],
       [1: tazriaMetzora, 8: achareiMotKedoshim, 15: emor,
@@ -129,6 +132,7 @@ struct YearTypeReadings {
       [7: vayetze, 14: vayishlach, 21: vayeshev, 28: miketz],
       [5: vayigash, 12: vayechi, 19: shemot, 26: vaera],
       [4: bo, 11: beshalach, 18: yitro, 25: mishpatim],
+      [:],
       [2: terumah, 9: tetzaveh, 16: kiTisa, 23: vayakhelPekudei],
       [1: vayikra, 8: tzav, 29: shemini],
       [6: tazriaMetzora, 13: achareiMotKedoshim, 20: emor, 27: beharBechukotai],
@@ -143,6 +147,7 @@ struct YearTypeReadings {
       [6: vayetze, 13: vayishlach, 20: vayeshev, 27: miketz],
       [4: vayigash, 11: vayechi, 18: shemini, 25: vaera],
       [3: bo, 10: beshalach, 17: yitro, 24: mishpatim],
+      [:],
       [1: terumah, 8: tetzaveh, 15: kiTisa, 22: vayakhel, 29: pekudei],
       [7: vayikra, 14: tzav, 28: shemini],
       [5: tazriaMetzora, 12: achareiMotKedoshim, 19: emor, 26: beharBechukotai],
@@ -157,6 +162,7 @@ struct YearTypeReadings {
       [5: toldot, 12: vayetze, 19: vayishlach, 26: vayeshev],
       [4: miketz, 11: vayigash, 18: vayechi, 25: shemot],
       [3: vaera, 10: bo, 17: beshalach, 24: yitro],
+      [:],
       [1: mishpatim, 8: terumah, 15: tetzaveh, 22: kiTisa, 29: vayakhelPekudei],
       [7: vayikra, 14: tzav, 28: shemini],
       [5: tazriaMetzora, 12: achareiMotKedoshim, 19: emor, 26: beharBechukotai],
@@ -171,6 +177,7 @@ struct YearTypeReadings {
       [4: toldot, 11: vayetze, 18: vayishlach, 25: vayeshev],
       [2: miketz, 9: vayigash, 16: vayechi, 23: shemot],
       [1: vaera, 8: bo, 15: beshalach, 22: yitro, 29: mishpatim],
+      [:],
       [6: terumah, 13: tetzaveh, 20: kiTisa, 27: vayakhelPekudei],
       [5: vayikra, 12: tzav, 26: shemini],
       [3: tazriaMetzora, 10: achareiMotKedoshim, 17: emor, 24: beharBechukotai],
