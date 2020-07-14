@@ -1,7 +1,7 @@
 import Foundation
 
 extension Calendar {
-  func makeHebrewCalendar() -> Calendar {
+  func toHebrewCalendar() -> Calendar {
     if self.identifier == .hebrew { return self }
     else {
       var calendar = Calendar(identifier: .hebrew)

@@ -70,14 +70,22 @@ struct YearTypeReadings {
   private static let vezotHaberachah = reading(for: .vezotHaberachah)
   
   private static func reading(for parshah: ParshahIdentifier) -> Reading {
-    ReadingFactory.makeReading(for: parshah)
+    ReadingFactory.reading(for: parshah)
   }
   
   static func reading(for type: HebrewYear.YearType, month: HebrewYear.Month, day: Int) -> Reading? {
-    readings(for: type)[month.rawValue - 1][day]
+    _readings(for: type)[month.rawValue - 1][day]
   }
   
-  private static func readings(for type: HebrewYear.YearType) -> Readings {
+  static func readings(for type: HebrewYear.YearType) -> [(HebrewYear.Month, Int, Reading)] {
+    _readings(for: type).enumerated().flatMap { monthRawValue, monthlyReadings in
+      monthlyReadings.compactMap { day, reading in
+        HebrewYear.Month(rawValue: monthRawValue).map { ($0, day, reading) }
+      }
+    }
+  }
+  
+  private static func _readings(for type: HebrewYear.YearType) -> Readings {
     switch type {
     case .בחג: return [
       [6: vayelech, 13: haazinu, 23: vezotHaberachah, 27: bereshit],

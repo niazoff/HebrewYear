@@ -2,11 +2,20 @@
   "object": {
     "pins": [
       {
+        "package": "SwiftExtensions",
+        "repositoryURL": "https://github.com/niazoff/SwiftExtensions.git",
+        "state": {
+          "branch": "master",
+          "revision": "03520fb502c284c806317f64e4acfcb59ac34027",
+          "version": null
+        }
+      },
+      {
         "package": "Torah",
         "repositoryURL": "https://github.com/niazoff/Torah.git",
         "state": {
           "branch": "master",
-          "revision": "1eb4029612d8789eb9812a13020745ab5899437e",
+          "revision": "dea22741ad4a368bc89ea7397b93afa672767714",
           "version": null
         }
       },

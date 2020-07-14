@@ -1,4 +1,5 @@
 import Foundation
+import Torah
 
 public class HebrewYear {
   public let year: Int
@@ -36,6 +37,12 @@ public class HebrewYear {
     guard let type = self.yearType(for: roshHashanahWeekday, length: length, isLeapYear: isLeapYear)
       else { preconditionFailure() }
     return type
+  }()
+  
+  public private(set) lazy var readings: [(Date, Reading)] = {
+    YearTypeReadings.readings(for: type).compactMap { month, day, reading in
+      calendar.date(from: .init(year: year, month: month.rawValue, day: day)).map { ($0, reading) }
+    }
   }()
   
   private enum Constants {

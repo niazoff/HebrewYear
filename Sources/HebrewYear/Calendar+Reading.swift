@@ -3,7 +3,7 @@ import Torah
 
 public extension Calendar {
   func reading(for date: Date) -> Reading? {
-    let hebrewCalendar = self.makeHebrewCalendar()
+    let hebrewCalendar = self.toHebrewCalendar()
     guard let hebrewYear = hebrewCalendar.hebrewYear(for: date),
       let month = HebrewYear.Month(rawValue: hebrewCalendar.component(.month, from: date))
       else { return nil }
