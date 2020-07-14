@@ -78,9 +78,9 @@ struct YearTypeReadings {
   }
   
   static func readings(for type: HebrewYear.YearType) -> [(HebrewYear.Month, Int, Reading)] {
-    _readings(for: type).enumerated().flatMap { monthRawValue, monthlyReadings in
-      monthlyReadings.compactMap { day, reading in
-        HebrewYear.Month(rawValue: monthRawValue).map { ($0, day, reading) }
+    _readings(for: type).enumerated().flatMap { monthIndex, monthlyReadings in
+      monthlyReadings.sorted { $0.0 < $1.0 }.compactMap { day, reading in
+        HebrewYear.Month(rawValue: monthIndex + 1).map { ($0, day, reading) }
       }
     }
   }
