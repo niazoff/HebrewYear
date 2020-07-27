@@ -50,8 +50,8 @@ public class HebrewYear {
     static let leapYearRemainders = [0, 3, 6, 8, 11, 14, 17]
   }
   
-  public init?(year: Int) {
-    guard year > 0 else { return nil }
+  public init(year: Int) {
+    guard year > 0 else { preconditionFailure("Year must be greater than zero.") }
     self.year = year
   }
   
