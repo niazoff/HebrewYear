@@ -39,12 +39,6 @@ public class HebrewYear {
     return type
   }()
   
-  public private(set) lazy var readings: [(Date, Reading)] = {
-    YearTypeReadings.readings(for: type).compactMap { month, day, reading in
-      calendar.date(from: .init(year: year, month: month.rawValue, day: day)).map { ($0, reading) }
-    }
-  }()
-  
   private enum Constants {
     static let leapYearModulus = 19
     static let leapYearRemainders = [0, 3, 6, 8, 11, 14, 17]
@@ -53,6 +47,12 @@ public class HebrewYear {
   public init(year: Int) {
     guard year > 0 else { preconditionFailure("Year must be greater than zero.") }
     self.year = year
+  }
+  
+  public func readings(in location: Location = .diaspora) -> [(Date, Reading)] {
+    YearTypeReadings.readings(for: type, location: location).compactMap { month, day, reading in
+      calendar.date(from: .init(year: year, month: month.rawValue, day: day)).map { ($0, reading) }
+    }
   }
   
   private func length(for numberOfDays: Int) -> Length? {
