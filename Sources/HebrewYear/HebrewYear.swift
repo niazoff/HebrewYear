@@ -1,5 +1,6 @@
 import Foundation
 import Torah
+import SwiftExtensions
 
 public class HebrewYear {
   public let year: Int
@@ -7,20 +8,21 @@ public class HebrewYear {
   private let calendar = Calendar(identifier: .hebrew)
   
   private lazy var roshHashanahDate: Date = {
-    guard let date = calendar.date(from: .init(year: year, month: 1, day: 1))
-      else { preconditionFailure() }
-    return date
+    calendar.date(from: .init(year: year, month: 1, day: 1)) ?? preconditionFailure()
   }()
   
   private lazy var nextRoshHashanahDate: Date = {
-    guard let date = calendar.date(byAdding: .init(year: 1), to: roshHashanahDate)
-      else { preconditionFailure() }
-    return date
+    calendar.date(byAdding: .init(year: 1), to: roshHashanahDate) ?? preconditionFailure()
   }()
   
   private lazy var roshHashanahWeekday: Int = {
     calendar.component(.weekday, from: roshHashanahDate)
   }()
+  
+  public var startDate: Date { roshHashanahDate }
+  public var endDate: Date {
+    calendar.date(byAdding: .init(day: -1), to: nextRoshHashanahDate) ?? preconditionFailure()
+  }
   
   public private(set) lazy var isLeapYear = {
     Constants.leapYearRemainders.contains(year % Constants.leapYearModulus)
