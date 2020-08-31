@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/niazoff/SwiftExtensions.git",
         "state": {
           "branch": "master",
-          "revision": "cda0c70cf0dd28e01b9dac863d234fd6ccb81100",
+          "revision": "c3456a4586a2c7fada69f4246f3e962a793d8730",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/niazoff/Torah.git",
         "state": {
           "branch": "master",
-          "revision": "8d45d875828e8e10113156a609f28b8be34eabd9",
+          "revision": "0c4eab66fbb05558ceecbdce035e0a392d0445a2",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/niazoff/VerseIndex.git",
         "state": {
           "branch": "master",
-          "revision": "e86faf3dc9cb4ed0a7af1ae836aa712669591ccb",
+          "revision": "fc012a33b44a766918e602479fd14c04b7f00286",
           "version": null
         }
       }
