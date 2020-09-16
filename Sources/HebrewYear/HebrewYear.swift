@@ -125,3 +125,9 @@ extension HebrewYear: Equatable {
     lhs.year == rhs.year
   }
 }
+
+extension HebrewYear: Comparable {
+  public static func <(lhs: HebrewYear, rhs: HebrewYear) -> Bool {
+    lhs.year < rhs.year
+  }
+}
