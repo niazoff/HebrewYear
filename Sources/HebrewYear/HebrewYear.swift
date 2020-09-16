@@ -119,3 +119,9 @@ public class HebrewYear {
     }
   }
 }
+
+extension HebrewYear: Equatable {
+  public static func ==(lhs: HebrewYear, rhs: HebrewYear) -> Bool {
+    lhs.year == rhs.year
+  }
+}
