@@ -131,3 +131,11 @@ extension HebrewYear: Comparable {
     lhs.year < rhs.year
   }
 }
+
+extension HebrewYear {
+  func parshahs(in location: Location = .diaspora) -> [ParshahIdentifier] {
+    readings(in: location)
+      .sorted { $0.0 < $1.0 }
+      .compactMap { ($0.1 as? ParshahReading)?.identifier }
+  }
+}
