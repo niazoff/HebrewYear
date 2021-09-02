@@ -132,7 +132,7 @@ extension HebrewYear: Comparable {
   }
 }
 
-extension HebrewYear {
+public extension HebrewYear {
   func parshahs(in location: Location = .diaspora) -> [ParshahIdentifier] {
     readings(in: location)
       .sorted { $0.0 < $1.0 }
