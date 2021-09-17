@@ -16,6 +16,17 @@ public extension Calendar {
       guard let date = nextShabbatDate else { break }
       reading = self.reading(for: date, location: location) as? ParshahReading
     }
+    if reading?.identifier == .bereshit,
+       let endDate = nextShabbatDate {
+      var date = self.startOfDay(for: date)
+      var previousReading: ParshahReading?
+      while previousReading == nil && !self.isDate(date, inSameDayAs: endDate) {
+        guard let nextDayDate = self.date(byAdding: .day, value: 1, to: date) else { break }
+        date = nextDayDate
+        previousReading = self.reading(for: date, location: location) as? ParshahReading
+        if let reading = previousReading { return (date, reading) }
+      }
+    }
     return nextShabbatDate.flatMap { date in reading.map { (date, $0) } }
   }
 }
